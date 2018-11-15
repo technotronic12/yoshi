@@ -62,6 +62,8 @@ const computedSeparateCss =
 
 const artifactVersion = process.env.ARTIFACT_VERSION;
 
+const staticAssetName = 'media/[name].[ext]?[hash]';
+
 // default public path
 let publicPath = '/';
 
@@ -434,7 +436,7 @@ function createCommonWebpackConfig({
                 {
                   loader: 'url-loader',
                   options: {
-                    name: '[path][name].[ext]?[hash]',
+                    name: staticAssetName,
                     limit: 10000,
                   },
                 },
@@ -470,7 +472,7 @@ function createCommonWebpackConfig({
               test: reAssets,
               loader: 'url-loader',
               options: {
-                name: 'media/[name].[ext]?[hash]',
+                name: staticAssetName,
                 limit: 10000,
               },
             },
@@ -498,8 +500,8 @@ function createCommonWebpackConfig({
       inTeamCity || withLocalSourceMaps
         ? 'source-map'
         : !isProduction
-          ? 'cheap-module-eval-source-map'
-          : false,
+        ? 'cheap-module-eval-source-map'
+        : false,
   };
 
   return config;
