@@ -570,9 +570,6 @@ describe('Aggregator: Test', () => {
             },
             {},
             {
-              babel: {
-                presets: [require.resolve('babel-preset-yoshi')],
-              },
               jest: {
                 preset: 'jest-yoshi-preset',
               },
@@ -585,6 +582,9 @@ describe('Aggregator: Test', () => {
               await import("./dynamic");
             })();
           `,
+          'babel.config.js': `module.exports = {
+              presets: [require.resolve('babel-preset-yoshi')],
+            }`,
           'src/dynamic.js': `
             document.body.innerHTML = "<h1>Dynamic</h1>";
           `,
