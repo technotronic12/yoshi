@@ -12,7 +12,7 @@ export default class App extends Component {
 
     const {
       default: feature,
-    } = await import(/* webpackChunkName: "[request]" */ `./features/${featureName}`);
+    } = await import(/* webpackChunkName: "[request]" */ /* webpackExclude: /assets/ */ `./features/${featureName}`);
 
     this.setState({ feature });
   }
