@@ -165,13 +165,12 @@ module.exports.toIdentifier = str => {
 
 module.exports.tryRequire = name => {
   try {
-    return require(name);
+    require.resolve(name);
   } catch (ex) {
-    if (ex.code === 'MODULE_NOT_FOUND') {
-      return null;
-    }
-    throw ex;
+    return null;
   }
+
+  return require(name);
 };
 
 // NOTE: We don't use "mergeByConcat" function in our codebase anymore,
